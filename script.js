@@ -2,38 +2,29 @@ const createAccount =(name,accountNo,initialBalance)=>{
     let balance = initialBalance
     let history = []
 
-    const deposit=(depositAmount)=>{
+    const deposit=(amount)=>{
         const oldBalance = balance
-        balance += depositAmount
+        const transactionId = crypto.randomUUID();
 
-        history.push({
-            type: "deposit",
-            depositAmount,
-            oldBalance,
-            newBalance: balance
-        })
+        balance += amount
 
-        return `deposit of ${depositAmount} successful.Old balance was 
-            ${oldBalance}.New balance is ${balance}`
+        transactionRecord({type:"deposit", amount, oldBalance, balance,transactionId});
+
+        return `deposit of ${amount} successful.Old balance was ${oldBalance}.New balance is ${balance} .Transaction ID ${transactionId}`
     }
-    const withdraw=(withadrawAmount)=>{
+    const withdraw=(amount)=>{
         const oldBalance = balance
-        if(balance < withadrawAmount){
-            return `You have insufficient balance of ${oldBalance}.Withdaw 
-                request of ${withadrawAmount} Unsuccessful`
+        const transactionId = crypto.randomUUID();
+        if(balance < amount){
+            transactionRecord({type:"failed", amount, oldBalance, balance,transactionId});
+            return `You have insufficient balance of ${oldBalance}.Withdraw request of ${amount} Unsuccessful .Transaction ID ${transactionId}`
         }
 
-        balance -= withadrawAmount
+        balance -= amount
 
-        history.push({
-            type: "withdraw",
-            withadrawAmount,
-            oldBalance,
-            newBalance: balance
-        });
+        transactionRecord({type:"withdraw", amount, oldBalance, balance,transactionId});
 
-        return`your withdrawal request of ${withadrawAmount} 
-            successful.Original balance was ${oldBalance}.New balance is ${balance}`
+        return`your withdrawal request of ${amount} successful.Original balance was ${oldBalance}.New balance is ${balance}.Transaction ID ${transactionId}`
     }
     const getStatus =()=>{
         if(balance<100){
@@ -41,6 +32,16 @@ const createAccount =(name,accountNo,initialBalance)=>{
         }
         return "healthy"
     }
+    const transactionRecord = (type, amount, oldBalance, newBalance,transactionId) => {
+        history.push({
+            type,
+            amount,
+            oldBalance,
+            newBalance,
+            time: new Date().toLocaleString(),
+            transactionId
+        });
+    };
 
     const getTransactions = () => [...history];
 
@@ -55,5 +56,6 @@ console.log(acc1.deposit(50))
 console.log(acc1.withdraw(500))
 console.log(acc1.withdraw(200))
 console.log(acc1.getStatus())
+console.log(acc1.deposit(100))
 console.log(acc1.getTransactions())
 
