@@ -1,13 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mukumbu Bank</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
-    <script src="script.js"></script>
+
+<!-- =========================
+     SIGN UP SCREEN
+========================= -->
+<section id="authScreen" class="auth">
+
+  <h1>🏦 Mukumbu Bank</h1>
+  <p>Create your secure banking account</p>
+
+  <input id="nameInput" type="text" placeholder="Full Name" />
+  <input id="passwordInput" type="password" placeholder="Create Password" />
+
+  <button onclick="createUserAccount()">Create Account</button>
+
+  <h2 id="status" class="blink-color">PS:This is a dummy page,your can test the bank functionalities via console</h2>
+
+</section>
+
+<!-- =========================
+     LOGIN SCREEN (NEW)
+========================= -->
+<section id="loginScreen" class="auth hidden">
+
+  <h1>🔐 Login to Mukumbu Bank</h1>
+  <p>Enter your credentials to continue</p>
+
+  <input id="loginNameInput" type="text" placeholder="Full Name" />
+  <input id="loginPasswordInput" type="password" placeholder="Password" />
+
+  <button onclick="loginUser()">Login</button>
+
+</section>
+
+<!-- =========================
+     DEPOSIT ACTIVATION SCREEN
+========================= -->
+<section id="activationScreen" class="auth hidden">
+
+  <h1>Activate Your Account</h1>
+  <p>Your account is created but inactive</p>
+
+  <input id="initialDeposit" type="number" placeholder="Minimum Deposit (KSh)" />
+
+  <button onclick="activateAccount()">Deposit & Activate</button>
+
+</section>
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+<main id="appScreen" class="dashboard hidden">
+
+  <header class="topbar">
+    <div class="logo">🏦 Mukumbu Bank</div>
+    <div class="user" id="userGreeting"></div>
+  </header>
+
+  <section class="card summary">
+    <h2>Account Overview</h2>
+
+    <div class="grid">
+      <div>
+        <p class="label">Account Number</p>
+        <p class="value" id="accountNumber"></p>
+      </div>
+
+      <div>
+        <p class="label">Balance</p>
+        <p class="value" id="balance"></p>
+      </div>
+
+      <div>
+        <p class="label">Status</p>
+        <p class="status" id="status"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card actions">
+    <h2>Quick Actions</h2>
+
+    <input id="amount" type="number" placeholder="Enter amount (KSh)" />
+
+    <div class="btn-group">
+      <button class="deposit" onclick="deposit()">Deposit</button>
+      <button class="withdraw" onclick="withdraw()">Withdraw</button>
+    </div>
+
+    <input id="targetAccount" type="text" placeholder="Recipient Account No" />
+    <button class="transfer" onclick="transfer()">Transfer</button>
+  </section>
+
+  <section class="card history">
+    <h2>Transactions</h2>
+    <ul id="transactionList"></ul>
+  </section>
+
+</main>
+
+<!-- =========================
+     SCRIPTS (IMPORTANT ORDER)
+========================= -->
+<script src="app.js"></script>
+<script src="script.js"></script>
+
 </body>
 </html>

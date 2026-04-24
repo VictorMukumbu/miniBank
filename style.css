@@ -1,0 +1,259 @@
+
+/* =========================
+   GLOBAL
+========================= */
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #0E3B2E;
+  color: #F6FBF7;
+}
+
+/* =========================
+   UTILITY
+========================= */
+.hidden {
+  display: none;
+}
+
+/* =========================
+   AUTH SCREEN (CREATE ACCOUNT)
+========================= */
+.auth {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: #0E3B2E;
+  text-align: center;
+}
+
+.auth h1 {
+  margin-bottom: 5px;
+  color: #F6FBF7;
+}
+
+.auth p {
+  color: #D7E7DD;
+  margin-bottom: 15px;
+}
+
+.auth input {
+  width: 280px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #D7E7DD;
+  background: #1F6F54;
+  color: #F6FBF7;
+  outline: none;
+}
+
+.auth input::placeholder {
+  color: #D7E7DD;
+}
+
+.auth button {
+  width: 280px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #5FB88A;
+  color: #0E3B2E;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.auth button:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+/* =========================
+   TOP BAR
+========================= */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 30px;
+  background: #1F6F54;
+  border-bottom: 1px solid #D7E7DD;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #F6FBF7;
+}
+
+.user {
+  font-size: 14px;
+  color: #D7E7DD;
+}
+
+/* =========================
+   DASHBOARD LAYOUT
+========================= */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  padding: 25px;
+}
+
+/* =========================
+   CARDS
+========================= */
+.card {
+  background: #1F6F54;
+  border: 1px solid #D7E7DD;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+h2 {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: #F6FBF7;
+}
+
+/* =========================
+   ACCOUNT OVERVIEW
+========================= */
+.grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.label {
+  font-size: 12px;
+  color: #D7E7DD;
+}
+
+.value {
+  font-size: 20px;
+  font-weight: bold;
+  color: #F6FBF7;
+}
+
+.status {
+  font-weight: bold;
+  color: #5FB88A;
+}
+
+/* =========================
+   INPUTS (DASHBOARD)
+========================= */
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 10px;
+  border: 1px solid #D7E7DD;
+  background: #0E3B2E;
+  color: #F6FBF7;
+  outline: none;
+}
+
+input::placeholder {
+  color: #D7E7DD;
+}
+
+input:focus {
+  border-color: #5FB88A;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.btn-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+button {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s ease;
+  color: #0E3B2E;
+}
+
+/* Deposit */
+.deposit {
+  background: #5FB88A;
+}
+
+/* Withdraw */
+.withdraw {
+  background: #D7E7DD;
+}
+
+/* Transfer */
+.transfer {
+  background: #F6FBF7;
+  width: 100%;
+}
+
+/* Hover */
+button:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+/* =========================
+   TRANSACTIONS
+========================= */
+.history ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.history li {
+  background: #0E3B2E;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  font-size: 13px;
+  border-left: 4px solid #5FB88A;
+  color: #F6FBF7;
+}
+
+/* Transaction states */
+.success {
+  border-left-color: #5FB88A;
+}
+
+.failed {
+  border-left-color: #D7E7DD;
+}
+
+.blink-color {
+  animation: blink 0.8s step-start infinite,
+             colorCycle 3s infinite;
+}
+
+/* fast blink (on/off) */
+@keyframes blink {
+  50% {
+    visibility: hidden;
+  }
+}
+
+/* color changes per cycle */
+@keyframes colorCycle {
+  0%   { color: red; }  /* green */
+  25%  { color: #1F6F54; }  /* dark green */
+  50%  { color: #D7E7DD; }  /* light */
+  75%  { color: #F6FBF7; }  /* almost white */
+  100% { color:red; }
+}
